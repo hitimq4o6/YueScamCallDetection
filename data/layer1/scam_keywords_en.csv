@@ -1,0 +1,87 @@
+surface,lang,concept,weight
+social security number,en,PII,80
+social security,en,AUTHORITY,70
+police headquarters,en,AUTHORITY,75
+police department,en,AUTHORITY,55
+arrest warrant,en,AUTHORITY,90
+money laundering,en,AUTHORITY,85
+government grant,en,AUTHORITY,75
+back taxes,en,AUTHORITY,70
+processing fee,en,MONEY_MOVE,80
+upfront fee,en,MONEY_MOVE,85
+wire transfer,en,MONEY_MOVE,90
+wire the funds,en,MONEY_MOVE,90
+wire the money,en,MONEY_MOVE,90
+transfer the payment,en,MONEY_MOVE,85
+customs fees,en,MONEY_MOVE,80
+customs fee,en,MONEY_MOVE,80
+ransom,en,MONEY_MOVE,95
+bank account number,en,PII,75
+bank account,en,BANK,40
+pin number,en,PII,80
+credit card details,en,PII,70
+credit card information,en,PII,70
+credit card,en,PII,35
+identity number,en,PII,70
+login credentials,en,REMOTE,85
+online banking credentials,en,REMOTE,90
+remote access,en,REMOTE,90
+otp,en,REMOTE,85
+password,en,REMOTE,55
+do not tell anyone,en,SECRECY,90
+do not tell,en,SECRECY,80
+kidnapped,en,THREAT,95
+legal action,en,THREAT,65
+cash prize,en,TRAVEL,60
+free vacation,en,TRAVEL,55
+lottery,en,TRAVEL,50
+crypto,en,PAYMENT,40
+bitcoin,en,PAYMENT,55
+deposit,en,MONEY_MOVE,45
+act now,en,METHOD,25
+secure account,en,MONEY_MOVE,95
+transfer your funds,en,MONEY_MOVE,85
+temporarily transfer,en,MONEY_MOVE,80
+this bank account,en,MONEY_MOVE,75
+bail money,en,MONEY_MOVE,90
+one-time payment,en,MONEY_MOVE,70
+immediate payment,en,MONEY_MOVE,70
+send funds,en,MONEY_MOVE,80
+make a payment,en,MONEY_MOVE,50
+bank details,en,PII,70
+credit card number,en,PII,75
+personal details,en,PII,40
+salary slips,en,PII,65
+property and assets,en,PII,55
+press 1,en,REMOTE,65
+click the link,en,REMOTE,85
+click this link,en,REMOTE,85
+district police,en,AUTHORITY,75
+fraud department,en,AUTHORITY,75
+credit card fraud,en,AUTHORITY,70
+legal consequences,en,THREAT,70
+arrested,en,THREAT,75
+disconnect the supply,en,THREAT,75
+virus on your,en,REMOTE,75
+security breach,en,METHOD,55
+unauthorized access,en,METHOD,55
+unusual activity,en,METHOD,45
+verify your identity,en,PII,55
+i guarantee,en,METHOD,40
+fast bucks,en,MONEY_MOVE,70
+you have won,en,TRAVEL,55
+you have been selected,en,METHOD,30
+grant fund,en,MONEY_MOVE,70
+delivery fee,en,MONEY_MOVE,55
+outstanding tax,en,AUTHORITY,65
+tax return,en,AUTHORITY,50
+medical expenses,en,MONEY_MOVE,35
+final courtesy call,en,METHOD,40
+within the hour,en,METHOD,45
+fund transfer,en,MONEY_MOVE,60
+part-time job,en,JOB,40
+investment scheme,en,PAYMENT,80
+click here,en,REMOTE,75
+verify your account,en,PII,65
+paid opportunity,en,JOB,35
+first successful investment,en,PAYMENT,55

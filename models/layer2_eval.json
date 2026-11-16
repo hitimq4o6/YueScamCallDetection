@@ -1,0 +1,19 @@
+{
+  "C": 1.0,
+  "train_rows": 36751,
+  "test_rows": 9188,
+  "test_scam_rate": 0.5652,
+  "majority_accuracy": 0.5652,
+  "test": {
+    "threshold": 0.35,
+    "accuracy": 0.7719,
+    "precision": 0.9485,
+    "recall": 0.6307,
+    "f1": 0.7576
+  },
+  "coverage": {
+    "rows_with_concept": 0.3513,
+    "scam_rows_with_concept": 0.5704
+  },
+  "language": "composite files are almost all English; not a Cantonese evaluation"
+}

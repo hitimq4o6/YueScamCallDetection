@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.tar.gz
+kaggle_data/
+data/hf/
+data/layer3/train/
+data/layer3/val/
+data/layer3/_mdc_cache/
+data/fake/
+data/real/

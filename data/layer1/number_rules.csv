@@ -1,0 +1,4 @@
+rule_id,kind,value,weight,label
+intl_plus,leading_plus,1,15,境外或國際號碼格式
+long_number,min_digits,11,15,超長號碼
+local_8,exact_digits,8,5,本地8位非白名單

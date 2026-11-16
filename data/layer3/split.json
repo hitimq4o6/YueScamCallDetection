@@ -1,0 +1,38 @@
+{
+  "repo": "garystafford/deepfake-audio-detection",
+  "url": "https://huggingface.co/datasets/garystafford/deepfake-audio-detection",
+  "license": "CC-BY-4.0",
+  "language": "en",
+  "note": "English YouTube speech versus TTS. Not Cantonese. Not a Hong Kong accuracy set. No new voices were generated.",
+  "split": "whole source id held out; clips from one YouTube video or one TTS job stay in one split",
+  "seed": 42,
+  "real_val_sources": [
+    "yt_0008",
+    "yt_0012"
+  ],
+  "fake_val_sources": [
+    "el_0009",
+    "el_0015",
+    "hg_0003",
+    "hg_0007",
+    "hg_0013",
+    "hu_0001",
+    "hu_0002",
+    "lv_0002",
+    "lv_0004",
+    "po_0001",
+    "po_0005",
+    "po_0021",
+    "po_0024",
+    "po_0031",
+    "po_0034",
+    "sp_0005",
+    "sp_0010"
+  ],
+  "counts": {
+    "train_bonafide": 672,
+    "val_bonafide": 261,
+    "train_spoof": 706,
+    "val_spoof": 227
+  }
+}

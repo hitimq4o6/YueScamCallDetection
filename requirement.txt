@@ -1,0 +1,5 @@
+torch
+torchaudio
+scikit-learn
+fastapi
+uvicorn
