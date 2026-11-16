@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 
 import torch
@@ -56,13 +57,19 @@ def export_and_check(model: SmallCNN, shape: tuple[int, int, int, int], path: Pa
 
 
 def main() -> None:
-    if not SAVE_PATH.is_file():
+    parser = argparse.ArgumentParser(description="Export the Layer-3 Mel-CNN checkpoint to ONNX.")
+    parser.add_argument("--checkpoint", type=Path, default=SAVE_PATH)
+    parser.add_argument("--out", type=Path, default=ONNX_PATH)
+    args = parser.parse_args()
+    checkpoint = args.checkpoint.resolve()
+    out = args.out.resolve()
+    if not checkpoint.is_file():
         raise SystemExit(
-            f"missing {SAVE_PATH}. Train first: python training_layer3.py\n"
+            f"missing {checkpoint}. Train first: python training_layer3.py\n"
             "No ONNX file was written. No accuracy is reported."
         )
-    model, shape = load_model(SAVE_PATH)
-    export_and_check(model, shape, ONNX_PATH)
+    model, shape = load_model(checkpoint)
+    export_and_check(model, shape, out)
 
 
 if __name__ == "__main__":

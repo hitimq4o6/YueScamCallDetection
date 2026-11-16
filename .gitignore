@@ -8,5 +8,13 @@ data/hf/
 data/layer3/train/
 data/layer3/val/
 data/layer3/_mdc_cache/
+data/layer3/_cv_extract/
 data/fake/
 data/real/
+data/layer3/spoof/*.wav
+data/layer3/bonafide/*.wav
+data/layer3_zh/
+data/layer3_zh_split2/
+data/layer3_zh_rev/
+models/cnn_small_zh.pt
+models/cnn_small_zh_split2.pt

@@ -4,9 +4,26 @@ Prepared 2026-11-16. This is a pilot set plan, not a full Cantonese scam-call da
 
 ## Status on 2026-11-16
 
-- The user placed the bonafide recording archive on disk at 15:35. It is not extracted into `data/layer3/bonafide/` yet.
-- No spoof clip was generated. IndexTTS-2 is still not installed.
-- `bonafide_manifest.csv` and `spoof_manifest.csv` still have headers only.
+- On 2026-11-16, `scripts/prepare_layer3_bonafide.py` wrote 30 clips to `data/layer3/bonafide/`.
+- Each clip is 16 kHz mono PCM WAV, 3–6 seconds, one hashed `client_id` each. Measured durations were checked. This is read speech, not scam calls.
+- Split is recorded in `data/layer3/split.json` under `yue_pilot`: train 24, val 6. The English `train/` and `val/` folders were not changed.
+- The same 30 WAV files and `spoof_prompts.csv` were copied to `C:\layer3\refs` and `C:\layer3` on `DESKTOP-NCR7SGI` (`user@192.168.50.86`). Windows listing showed 30 wav files.
+- On 2026-11-16 IndexTTS-2 at `C:\Users\user\Desktop\fyp\index-tts`, commit `d9e41aa`, generated 3 listen clips only.
+- Those 3 were deleted: IndexTTS-2 gave Mandarin, not Cantonese. The BPE table lacks 係, 哋, 喺, 咗, 嚟, 個, 戶, 處, 職, 員, 銀, and the model has no Cantonese support.
+- Current generator: `jmtl/hk-cantonese-cc0-qwen3-tts` v0.0.5. License Apache-2.0.
+  - Base: `Qwen/Qwen3-TTS-12Hz-1.7B-Base`, Apache-2.0. Fine-tuned on CC0 Common Voice yue 22.0 and zh-HK 27.0.
+  - Voice: baked speaker `hk_voice_343`. No reference clip is read at run time.
+  - Merged on Mac with `scripts/apply_adapter.py`; 4.21 GB; copied to `C:\layer3\tts\hk-cantonese`.
+  - Windows runtime: `qwen-tts==0.1.1`, transformers 4.57.3.
+  - 3 listen clips: `qwentts_000.wav` to `002.wav`, 24 kHz, 9.20, 8.72, 10.88 seconds. Script: `scripts/windows_generate_yue_tts.py`.
+  - Label output as synthetic speech. The voice belongs to one real CC0 contributor. Do not identify or impersonate them.
+  - Final set is 30 clips in `data/layer3/spoof/`, `qwentts_000.wav` to `029.wav`.
+  - Two built-in CC0 voices alternate: `hk_voice_343` and `hk_voice_777`. No reference clip is read, so no contributor is cloned at run time.
+  - Mix: 15 scam-style lines from `spoof_prompts.csv`, 15 everyday lines from `neutral_prompts.csv`.
+  - Durations 4.24 to 12.48 seconds, mean 8.55, 24 kHz. Manifest has a `kind` column.
+  - Still a pilot. It is not a Cantonese scam-call evaluation set and carries no accuracy number.
+  - All 30 spoof clips were resampled to 16 kHz mono so they match the bonafide clips. Before that, sample rate alone could separate the classes.
+  - The model has two built-in voices but the model card says v0.0.5 is one female donor voice. The spoof class is biased towards one timbre. This is a known limit until a multi-voice Cantonese TTS is used.- `spoof_manifest.csv` still has a header only.
 - `data/layer3/train/` and `data/layer3/val/` are the older English YouTube-versus-TTS set from 2026-11-03. Do not mix that set into this pilot. Do not call either set a Hong Kong accuracy.
 
 ## Why the clips are not here
@@ -93,5 +110,6 @@ Expected spoof output: one WAV per row in `data/layer3/spoof_prompts.csv`, about
 ## Confirmations
 
 - No YouTube or unlicensed audio was used.
-- The only local speech archive noted here is the Common Voice yue tar.gz above. It was not unpacked into reference clips on this pass.
+- The only speech used for the 30 reference clips is the local Common Voice yue tar.gz above.
+- Speaker identity was not looked up. The manifest stores 16 hex characters of the dataset `client_id` hash.
 - No real person's voice was cloned.

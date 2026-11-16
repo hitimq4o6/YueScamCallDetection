@@ -1,0 +1,29 @@
+{
+ "model": "models/cnn_small_zh_split2.pt",
+ "data": "data/layer3_zh_split2",
+ "note": "Cantonese pilot. 60 clips total. Not a Hong Kong accuracy. Not a legal finding.",
+ "counts": {
+  "train": {
+   "bonafide": 18,
+   "spoof": 15
+  },
+  "val": {
+   "bonafide": 12,
+   "spoof": 15
+  }
+ },
+ "correct": {
+  "zh_split2": {
+   "train_bonafide": "18/18",
+   "train_spoof": "15/15",
+   "val_bonafide": "12/12",
+   "val_spoof": "13/15"
+  },
+  "zh": {
+   "train_bonafide": "24/24",
+   "train_spoof": "24/24",
+   "val_bonafide": "6/6",
+   "val_spoof": "5/6"
+  }
+ }
+}

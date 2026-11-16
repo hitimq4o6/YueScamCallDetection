@@ -34,6 +34,12 @@ The script picks CUDA, then MPS, then CPU. It saves the best validation checkpoi
 python export_onnx.py
 ```
 
+Cantonese pilot checkpoint and output:
+
+```bash
+python export_onnx.py --checkpoint models/cnn_small_zh_split2.pt --out models/cnn_small_zh.onnx
+```
+
 This reads `models/cnn_small.pt` and writes `models/cnn_small.onnx`. It then runs one dummy ONNX Runtime check. That check is not an accuracy number. If the checkpoint is missing, nothing is exported.
 
 TFLite INT8 is not produced by this step. The phone budget is about 5–10 MB. This CNN is smaller than that budget.

@@ -268,11 +268,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--epochs", type=int, default=EPOCHS)
     parser.add_argument("--batch-size", type=int, default=BATCH_SIZE)
     parser.add_argument("--lr", type=float, default=LR)
+    parser.add_argument("--data-dir", type=Path, default=DATA_DIR, help="folder holding train/ and val/")
+    parser.add_argument("--save", type=Path, default=SAVE_PATH, help="checkpoint path to write")
     return parser.parse_args()
 
 
 def main() -> None:
+    global DATA_DIR, SAVE_PATH
     args = parse_args()
+    DATA_DIR = args.data_dir.resolve()
+    SAVE_PATH = args.save.resolve()
     if args.epochs < 1 or args.batch_size < 1 or args.lr <= 0:
         raise SystemExit("epochs and batch-size must be >= 1, and lr must be > 0")
     blocked = missing_data_message()

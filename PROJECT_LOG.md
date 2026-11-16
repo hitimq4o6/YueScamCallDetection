@@ -8,7 +8,7 @@ Last updated: 2026-11-16
 
 ## 現況
 
-- 進行中：用戶已於 2026-11-16 15:35 把 Common Voice 粵語錄音包放到專案根目錄。尚未解壓成 `data/layer3/bonafide/`。IndexTTS-2 仍未裝，沒有生成或克隆聲線。英文訓練結果仍不是香港準確率。
+- 進行中：2026-11-16 粵語 Layer-3 pilot 已訓練並匯出 ONNX。checkpoint `models/cnn_small_zh_split2.pt`，ONNX `models/cnn_small_zh.onnx`，val 25/27 正確。這不是香港準確率，樣本只有 60 條，spoof 只有 2 條 TTS 聲線。第 7–9 週交付已齊。TFLite INT8 同手機大小／延遲測試已移到第 10–12 週。
 - 電話只做推論。模型只在離線訓練。
 - Layer-2 不是粵語評估，也不是《全城防伏手冊》評估。
 
@@ -48,6 +48,27 @@ Last updated: 2026-11-16
   - 兩份 manifest 只有表頭，0 條音檔。
   - 目錄頁查到：Common Voice Scripted Speech 27.0 Cantonese，id `cmu5x3i5w00d6o107yvwox9lg`，locale `yue`，目錄寫 CC0-1.0，完整包 6433594094 bytes。
   - 2026-11-16：用戶確認 `1789494296567-cv-corpus-27.0-2026-09-11-yue.tar.gz` 就是上述頁面的錄音包。專案根目錄同 Downloads 各有一份，大小同目錄 `sizeBytes` 一致。包內是 `cv-corpus-27.0-2026-09-11/yue/clips/common_voice_yue_*.mp3`。內附 README 寫 CC-0，並寫明不得辨認講者身份。SHA256 未在本機重算，不要寫成 checksum 已核對。這不是騙案電話。
+  - 同日 `scripts/prepare_layer3_bonafide.py` 抽出 30 條。條件：3–6 秒、`up_votes>=2`、`down_votes==0`、30 個不同 `client_id` 各 1 條。輸出 `data/layer3/bonafide/cv_yue_000.wav` 至 `cv_yue_029.wav`，16 kHz mono。實測時長全部在 3–6 秒。`split.json` 的 `yue_pilot` 是 train 24、val 6。沒有改英文 `train/`、`val/`。
+  - 30 條 WAV 同 `spoof_prompts.csv` 已複製到 `user@192.168.50.86` 的 `C:\layer3\refs` 同 `C:\layer3`。Windows 列出 30 個 wav。
+  - 同日 IndexTTS-2 已在 `C:\Users\user\Desktop\fyp\index-tts`，commit `d9e41aa`。輔助模型因 Windows 憑證錯誤，改由 Mac 下載再傳入 `checkpoints_2\hf_cache`。
+  - 試聽 3 條已生成：`C:\layer3\spoof\indextts2_000.wav` 至 `002`，本機副本在 `data/layer3/spoof/`。時長 8.70、5.17、5.47 秒，22050 Hz。日誌顯示多個粵語字是 unknown token。這不是準確率。未跑齊 30 條。
+  - 同日發現 IndexTTS-2 只會出普通話：BPE 詞表缺大量繁體字（係、哋、喺、咗、嚟、個、戶、處、職、員、銀 皆不在），`我係入境處職員` 有 4 個 unknown；官方亦不支援粵語。用戶要求真粵語發音，故改用 Qwen3-TTS 粵語模型。
+  - 新方案：`jmtl/hk-cantonese-cc0-qwen3-tts` v0.0.5（Apache-2.0，LoRA over `Qwen/Qwen3-TTS-12Hz-1.7B-Base`，用 Common Voice yue 22.0 + zh-HK 27.0 的 CC0 資料訓練）。聲音是內建 `hk_voice_343`，生成時不讀參考音、不即時克隆。
+  - 執行：Mac 用 `scripts/apply_adapter.py` 合併出 4.21 GB 模型，經 tar over SSH 送到 `C:\layer3\tts\hk-cantonese`。Windows 裝 `qwen-tts==0.1.1`（會把 transformers 升到 4.57.3）。
+  - 3 條試聽已生成：`data/layer3/spoof/qwentts_000..002.wav`，24 kHz，9.20、8.72、10.88 秒。腳本 `scripts/windows_generate_yue_tts.py`。已刪除 3 條 IndexTTS-2 普通話檔。
+  - 同日擴至 30 條。模型內建兩個 CC0 聲線 `hk_voice_343`、`hk_voice_777`，交替使用，非克隆。新增 `data/layer3/neutral_prompts.csv` 17 句日常非詐騙短句。最終 30 條：詐騙風格 15、日常 15；兩個聲線各 15。時長 4.24–12.48 秒，平均 8.55 秒，24 kHz。`spoof_manifest.csv` 加 `kind` 欄。
+  - 用戶指出兩個內建聲線其實都是女聲，會有 bias。已查證模型卡：v0.0.5 是單一女士捐贈者聲線。用戶決定暫時不換 TTS，先用現有 30 條完成 Layer-3。
+  - 發現並修正資料洩漏：原先 bonafide 16 kHz、spoof 24 kHz，模型可單靠頻譜邊界分辨。已把 30 條 spoof 重採樣到 16 kHz mono，兩邊一致。
+  - `scripts/layout_layer3_zh.py` 建立 `data/layer3_zh/` 同 `data/layer3_zh_split2/`，唔改英文 `data/layer3/{train,val}`。
+  - `training_layer3.py` 加 `--data-dir` 同 `--save`，可用其他資料夾同 checkpoint 名。
+  - split2 拆分：train bonafide 18、spoof 15；val bonafide 12、spoof 15。8 epochs、batch 8、lr 0.0005、MPS。
+  - 結果：train 18/18、15/15；val bonafide 12/12、spoof 13/15。寫入 `models/layer3_zh_eval.json`。
+  - 中途一度誤判模型失效，原因是診斷腳本漏了 AmplitudeToDB 同標準化。用 `AudioFolderDataset` 重測後才正確。
+  - 限制：spoof 只有 2 條 TTS 聲線、全部女聲；60 條樣本；驗證集只 27 條。唔可以寫成香港準確率。
+  - 同日完成第 7–9 週 ONNX 交付：`export_onnx.py` 加 `--checkpoint`、`--out`。匯出 `models/cnn_small_zh.onnx`，0.342 MB，輸入 `(1,1,64,304)`、輸出 `(1,2)`，dummy max_abs_diff 0.000000。這不是準確率。
+  - 第 7–9 週交付（Small CNN + ONNX export）已齊。
+  - 由第 7–9 週移到第 10–12 週的項目：TFLite INT8 量化。原因：要先確認 Android 手機 runtime 同實際 CPU 表現，唔應該在第 7–9 週單獨做完。同期一併做手機推論大小同延遲測試。
+  - 語音模型卡提醒：這是真人捐贈者的聲線，須標示為合成語音，不得冒充他人。仍未跑齊 30 條。
 
 ## Layer-2 實測（不要改成別的數字）
 
@@ -72,10 +93,10 @@ Last updated: 2026-11-16
 ## 未做
 
 - 用有標籤的粵語／普通話詐騙與非詐騙文本重訓或另測 Layer-2。
-- 第 7–9 週：從已放好的粵語錄音包抽出試點 WAV 到 `data/layer3/bonafide/`。再在 4080 Super 裝 IndexTTS-2 生成 spoof。現有數字只屬英文 YouTube 對 TTS。TFLite INT8 仍未做。
-- 第 10–12 週：Android 長者介面、語音警告、可選家人通知。
+- 第 10–12 週：Android 長者介面、語音警告、可選家人通知。同期做原定第 7–9 週的 TFLite INT8 量化，以及手機推論大小同延遲測試，因為要先有 Android runtime 才量得準。
 - 第 13–14 週：評估、報告（APA 7）、demo。不捏造準確率。
 - 用《全城防伏手冊》核對關鍵詞，並核實未確認熱線。
+- 換多聲線粵語 TTS，解決 spoof 只有 2 條女聲的 bias。
 
 ## 限制（沿用，不要在 log 裡抹掉）
 

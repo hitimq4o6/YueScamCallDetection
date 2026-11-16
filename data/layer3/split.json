@@ -34,5 +34,183 @@
     "val_bonafide": 261,
     "train_spoof": 706,
     "val_spoof": 227
+  },
+  "yue_pilot": {
+    "source": "Mozilla Data Collective Common Voice Scripted Speech 27.0 Cantonese",
+    "archive": "1789494296567-cv-corpus-27.0-2026-09-11-yue.tar.gz",
+    "license": "CC0-1.0",
+    "dataset_slug": "common-voice-scripted-speech-27-0-canton-14840b6e",
+    "page": "https://mozilladatacollective.com/datasets/cmu5x3i5w00d6o107yvwox9lg",
+    "window_sec": [
+      3.0,
+      6.0
+    ],
+    "seed": 42,
+    "rule": "one clip per client_id; 6 speakers held out for val",
+    "note": "Read speech, not scam calls. Not mixed into the English train/val folders.",
+    "counts": {
+      "train": 24,
+      "val": 6
+    },
+    "val_speakers": [
+      "19cb1024790d5089",
+      "29c8695fe7131a1d",
+      "3d9262109bb6c565",
+      "aa717d35c25291ad",
+      "d27777c4b26c0462",
+      "efd35a9962f8f71c"
+    ],
+    "files": [
+      {
+        "file": "data/layer3/bonafide/cv_yue_000.wav",
+        "split": "train",
+        "speaker_id": "e52f015808581fe7"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_001.wav",
+        "split": "train",
+        "speaker_id": "0bfb7e11a15883a2"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_002.wav",
+        "split": "train",
+        "speaker_id": "3eac3df4696edbd2"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_003.wav",
+        "split": "train",
+        "speaker_id": "c209a2df83b4647e"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_004.wav",
+        "split": "train",
+        "speaker_id": "f8be2b85141b7ba8"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_005.wav",
+        "split": "train",
+        "speaker_id": "d67e0a473ded98dc"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_006.wav",
+        "split": "val",
+        "speaker_id": "efd35a9962f8f71c"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_007.wav",
+        "split": "train",
+        "speaker_id": "d08d49aeba63a96d"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_008.wav",
+        "split": "train",
+        "speaker_id": "ed8ee177ea9609f3"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_009.wav",
+        "split": "train",
+        "speaker_id": "871c46279899d591"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_010.wav",
+        "split": "val",
+        "speaker_id": "aa717d35c25291ad"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_011.wav",
+        "split": "train",
+        "speaker_id": "2502397e2e06e485"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_012.wav",
+        "split": "train",
+        "speaker_id": "0735cf80e323603b"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_013.wav",
+        "split": "train",
+        "speaker_id": "748eaf6bbb45cea6"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_014.wav",
+        "split": "val",
+        "speaker_id": "d27777c4b26c0462"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_015.wav",
+        "split": "train",
+        "speaker_id": "e0e4825f4e733d34"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_016.wav",
+        "split": "train",
+        "speaker_id": "02e997f2f761820b"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_017.wav",
+        "split": "train",
+        "speaker_id": "0b3d552a07d10089"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_018.wav",
+        "split": "train",
+        "speaker_id": "f64f5d63b98af980"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_019.wav",
+        "split": "val",
+        "speaker_id": "3d9262109bb6c565"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_020.wav",
+        "split": "train",
+        "speaker_id": "397143f7f4f85afc"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_021.wav",
+        "split": "train",
+        "speaker_id": "ed003824265da806"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_022.wav",
+        "split": "val",
+        "speaker_id": "19cb1024790d5089"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_023.wav",
+        "split": "train",
+        "speaker_id": "c9b7eb1fe87a3232"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_024.wav",
+        "split": "train",
+        "speaker_id": "dd60c03e1be08e8f"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_025.wav",
+        "split": "train",
+        "speaker_id": "1829ae38a4c2d260"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_026.wav",
+        "split": "val",
+        "speaker_id": "29c8695fe7131a1d"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_027.wav",
+        "split": "train",
+        "speaker_id": "02607cab5f005ac5"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_028.wav",
+        "split": "train",
+        "speaker_id": "47fc0a87e8a03654"
+      },
+      {
+        "file": "data/layer3/bonafide/cv_yue_029.wav",
+        "split": "train",
+        "speaker_id": "e74ba35b780016f1"
+      }
+    ]
   }
 }
